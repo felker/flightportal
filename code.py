@@ -161,7 +161,7 @@ def scroll(line):
         w.feed()
         time.sleep(TEXT_SPEED)
         #matrixportal.display.refresh(minimum_frames_per_second=0)
-        
+
 
 # Populate the labels, then scroll longer versions of the text
 def display_flight():
@@ -171,21 +171,21 @@ def display_flight():
     label2.text=label2_short
     label3.text=label3_short
     time.sleep(PAUSE_BETWEEN_LABEL_SCROLLING)
-    
+
     label1.x=matrixportal.display.width+1
     label1.text=label1_long
     scroll(label1)
     label1.text=label1_short
     label1.x=1
     time.sleep(PAUSE_BETWEEN_LABEL_SCROLLING)
-    
+
     label2.x=matrixportal.display.width+1
     label2.text=label2_long
     scroll(label2)
     label2.text=label2_short
     label2.x=1
     time.sleep(PAUSE_BETWEEN_LABEL_SCROLLING)
-    
+
     label3.x=matrixportal.display.width+1
     label3.text=label3_long
     scroll(label3)
@@ -248,7 +248,7 @@ def get_flight_details(fn):
                     # Stop reading chunks
                     print("Details lookup saved "+str(trail_end)+" bytes.")
                     return True
-    # Handle occasional URL fetching errors            
+    # Handle occasional URL fetching errors
     except (RuntimeError, OSError, HttpError) as e:
             print("Error--------------------------------------------------")
             print(e)
@@ -257,7 +257,7 @@ def get_flight_details(fn):
     #If we got here we got through all the JSON without finding the right trail entries
     print("Failed to find a valid trail entry in JSON")
     return False
-    
+
 
 # Look at the byte array that fetch_details saved into and extract any fields we want
 def parse_details_json():
@@ -419,7 +419,7 @@ while True:
     #print("Get flights...")
     flight_id=get_flights()
     w.feed()
-    
+
 
     if flight_id:
         if flight_id==last_flight:
@@ -438,12 +438,12 @@ while True:
                     print("error parsing JSON, skip displaying this flight")
             else:
                 print("error loading details, skip displaying this flight")
-            
+
             last_flight=flight_id
     else:
         #print("No flights found, clear display")
         clear_flight()
-    
+
     time.sleep(5)
 
 
